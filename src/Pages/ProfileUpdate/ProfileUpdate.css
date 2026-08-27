@@ -1,0 +1,496 @@
+.profile {
+  min-height: 100vh;
+  /* background: linear-gradient(#04041df8, #020218) no-repeat; */
+  background-color: #01070b;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-container {
+  height: 60vh;
+  /*  background-color: #020310c8; */
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 700px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 1px #0a787d;
+}
+
+.profile-pic {
+  max-width: 160px;
+  aspect-ratio: 1/1;
+  margin: 20px auto;
+  border-radius: 50%;
+}
+
+.profile form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px;
+}
+
+.profile form h3 {
+  font-weight: 600;
+  color: #d4caca;
+}
+
+.profile label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: gray;
+  cursor: pointer;
+}
+
+.profile label img {
+  width: 50px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.profile input,
+textarea {
+  padding: 10px;
+  min-width: 300px;
+  border: 1px solid #c9c9c9;
+  outline-color: #077eff;
+}
+
+.profile form button {
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 2px;
+  background-color: #077eff;
+}
+
+.profile form button:hover {
+  background-color: #096dd8;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   MOBILE + TABLET + ALL SMALL DEVICES
+========================================================= */
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+   769px - 1100px
+========================================================= */
+
+@media (max-width: 1100px) {
+  .profile-container {
+    width: 90%;
+    min-width: 0;
+    max-width: 850px;
+  }
+
+  .profile form {
+    padding: 40px;
+  }
+
+  .profile input,
+  .profile textarea {
+    min-width: 260px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* =========================================================
+   TABLET
+   601px - 768px
+========================================================= */
+
+@media (max-width: 768px) {
+  .profile {
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    align-items: center;
+  }
+
+  .profile-container {
+    width: 100%;
+    min-width: 0;
+    max-width: 600px;
+    height: auto;
+    min-height: auto;
+
+    flex-direction: column;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    box-sizing: border-box;
+  }
+
+  .profile-pic {
+    width: 140px;
+    max-width: 140px;
+    margin: 25px auto 5px;
+  }
+
+  .profile form {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 30px;
+    gap: 17px;
+  }
+
+  .profile form h3 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .profile input,
+  .profile textarea {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
+    box-sizing: border-box;
+
+    font-size: 14px;
+  }
+
+  .profile form button {
+    width: 100%;
+    min-height: 40px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   481px - 600px
+========================================================= */
+
+@media (max-width: 600px) {
+  .profile {
+    width: 100%;
+    min-height: 100dvh;
+
+    padding: 15px;
+
+    box-sizing: border-box;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow-x: hidden;
+  }
+
+  .profile-container {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 10px;
+
+    box-sizing: border-box;
+  }
+
+  .profile-pic {
+    width: 120px;
+    max-width: 120px;
+
+    margin: 22px auto 2px;
+  }
+
+  .profile form {
+    width: 100%;
+
+    padding: 25px 20px 25px;
+
+    gap: 15px;
+
+    box-sizing: border-box;
+  }
+
+  .profile form h3 {
+    margin: 0 0 5px;
+
+    font-size: 19px;
+
+    text-align: center;
+  }
+
+  .profile label {
+    width: 100%;
+
+    gap: 8px;
+
+    font-size: 13px;
+
+    box-sizing: border-box;
+  }
+
+  .profile label img {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+  }
+
+  .profile input,
+  .profile textarea {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
+    padding: 10px;
+
+    font-size: 14px;
+
+    box-sizing: border-box;
+  }
+
+  .profile textarea {
+    min-height: 90px;
+
+    resize: vertical;
+  }
+
+  .profile form button {
+    width: 100%;
+
+    min-height: 40px;
+
+    padding: 9px;
+
+    font-size: 14px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   381px - 480px
+========================================================= */
+
+@media (max-width: 480px) {
+  .profile {
+    padding: 10px;
+  }
+
+  .profile-container {
+    width: 100%;
+
+    border-radius: 9px;
+  }
+
+  .profile-pic {
+    width: 105px;
+    max-width: 105px;
+
+    margin: 18px auto 0;
+  }
+
+  .profile form {
+    padding: 22px 16px 20px;
+
+    gap: 13px;
+  }
+
+  .profile form h3 {
+    font-size: 18px;
+  }
+
+  .profile label {
+    font-size: 12px;
+  }
+
+  .profile label img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .profile input,
+  .profile textarea {
+    width: 100%;
+    min-width: 0;
+
+    padding: 9px;
+
+    font-size: 13px;
+  }
+
+  .profile textarea {
+    min-height: 80px;
+  }
+
+  .profile form button {
+    min-height: 38px;
+
+    font-size: 13px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+   320px - 380px
+========================================================= */
+
+@media (max-width: 380px) {
+  .profile {
+    padding: 8px;
+  }
+
+  .profile-container {
+    width: 100%;
+
+    border-radius: 8px;
+  }
+
+  .profile-pic {
+    width: 90px;
+    max-width: 90px;
+
+    margin: 15px auto 0;
+  }
+
+  .profile form {
+    padding: 18px 13px 18px;
+
+    gap: 11px;
+  }
+
+  .profile form h3 {
+    font-size: 17px;
+  }
+
+  .profile label {
+    gap: 7px;
+
+    font-size: 11px;
+  }
+
+  .profile label img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .profile input,
+  .profile textarea {
+    width: 100%;
+    min-width: 0;
+
+    padding: 8px;
+
+    font-size: 12px;
+  }
+
+  .profile textarea {
+    min-height: 70px;
+  }
+
+  .profile form button {
+    min-height: 36px;
+
+    padding: 8px;
+
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
+   EXTRA SMALL DEVICES
+   Below 320px
+========================================================= */
+
+@media (max-width: 319px) {
+  .profile {
+    padding: 5px;
+  }
+
+  .profile-container {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .profile-pic {
+    width: 75px;
+    max-width: 75px;
+
+    margin: 12px auto 0;
+  }
+
+  .profile form {
+    padding: 15px 10px;
+
+    gap: 9px;
+  }
+
+  .profile form h3 {
+    font-size: 16px;
+  }
+
+  .profile label {
+    font-size: 10px;
+  }
+
+  .profile label img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .profile input,
+  .profile textarea {
+    width: 100%;
+    min-width: 0;
+
+    padding: 7px;
+
+    font-size: 11px;
+  }
+
+  .profile form button {
+    min-height: 34px;
+
+    font-size: 11px;
+  }
+}
+
+/* =========================================================
+   LANDSCAPE MOBILE
+========================================================= */
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .profile {
+    min-height: 100dvh;
+    padding: 10px;
+    align-items: flex-start;
+
+    overflow-y: auto;
+  }
+
+  .profile-container {
+    margin: 10px auto;
+
+    height: auto;
+  }
+
+  .profile-pic {
+    width: 80px;
+    max-width: 80px;
+
+    margin: 12px auto 0;
+  }
+
+  .profile form {
+    padding: 15px 25px 20px;
+
+    gap: 10px;
+  }
+}

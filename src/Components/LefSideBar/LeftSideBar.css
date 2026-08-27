@@ -1,0 +1,423 @@
+.ls {
+  background: #0F0F10;
+  color: white;
+  height: 95vh;
+  overflow-y: hidden;
+}
+
+
+.ls-top {
+  padding: 20px;
+}
+
+
+.ls-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ls-nav .logo {
+  max-width: 150px;
+}
+
+
+.ls-nav .menu img {
+  max-height: 30px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+
+.ls-search {
+  background-color: #121212;
+  display: flex;
+  align-items: Center;
+  gap: 10px;
+  padding: 10px 12px;
+  margin-top: 20px;
+  border-radius: 4px;
+}
+
+.ls-search img {
+  width: 16px;
+}
+
+.ls-search input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 11px;
+}
+
+.ls-search input::placeholder {
+  color: #c8c8c8;
+}
+
+.ls-list {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  overflow-y: scroll;
+}
+
+.friends img {
+  width: 40px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.friends {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.friends div {
+  display: flex;
+  flex-direction: column;
+}
+
+.friends span {
+  color: #9f9f9f;
+  font-size: 11px;
+}
+
+.friends:hover {
+  background-color: #181c20;
+}
+
+.friends:hover span {
+  color: white;
+}
+
+
+.ls-nav .menu {
+  position: relative;
+  padding: 10px 0px;
+}
+
+.menu .sub-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 130px;
+  padding: 20px;
+  background-color: white;
+  color: black;
+  border-radius: 3%;
+  display: none;
+}
+
+.sub-menu hr {
+  border: none;
+  height: 1px;
+  background: #a4a4a4;
+  margin: 8px 0px;
+}
+
+.sub-menu p {
+  cursor: pointer;
+  font-size: 14px;
+
+}
+
+.menu:hover .sub-menu {
+   display: block;
+}
+
+
+
+
+
+
+
+/* ================= RESPONSIVE MEDIA QUERIES ================= */
+
+/* Laptops / small desktops */
+@media screen and (max-width: 1200px) {
+  .ls-nav .logo {
+    max-width: 140px;
+  }
+}
+
+/* Tablets (landscape) */
+@media screen and (max-width: 992px) {
+  .ls-top {
+    padding: 18px;
+  }
+
+  .ls-nav .logo {
+    max-width: 120px;
+  }
+
+  .ls-nav .menu img {
+    max-height: 28px;
+  }
+
+  .friends {
+    padding: 10px 18px;
+    font-size: 12.5px;
+  }
+}
+
+/* Tablets (portrait) */
+@media screen and (max-width: 768px) {
+  .ls {
+    height: 100%;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  .ls-top {
+    padding: 15px;
+  }
+
+  .ls-nav .logo {
+    max-width: 110px;
+  }
+
+  .ls-nav .menu img {
+    max-height: 26px;
+  }
+
+  .ls-search {
+    padding: 9px 10px;
+    margin-top: 15px;
+    gap: 8px;
+  }
+
+  .ls-search input {
+    font-size: 12px;
+  }
+
+  .ls-list {
+    height: calc(100vh - 130px);
+  }
+
+  .friends img {
+    width: 38px;
+  }
+
+  .friends {
+    padding: 10px 15px;
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  .friends span {
+    font-size: 10.5px;
+  }
+}
+
+/* Large mobile phones */
+@media screen and (max-width: 576px) {
+  .ls-top {
+    padding: 12px;
+  }
+
+  .ls-nav .logo {
+    max-width: 95px;
+  }
+
+  .ls-nav .menu img {
+    max-height: 24px;
+  }
+
+  .ls-search {
+    padding: 8px;
+    margin-top: 12px;
+    border-radius: 6px;
+  }
+
+  .ls-search img {
+    width: 14px;
+  }
+
+  .ls-search input {
+    font-size: 11px;
+  }
+
+  .ls-list {
+    height: calc(100vh - 110px);
+  }
+
+  .friends img {
+    width: 34px;
+  }
+
+  .friends {
+    padding: 8px 12px;
+    gap: 8px;
+    font-size: 11px;
+  }
+
+  .friends span {
+    font-size: 10px;
+  }
+}
+
+/* Small mobile phones */
+@media screen and (max-width: 400px) {
+  .ls-nav .logo {
+    max-width: 80px;
+  }
+
+  .ls-nav .menu img {
+    max-height: 20px;
+  }
+
+  .ls-search input {
+    font-size: 10px;
+  }
+
+  .ls-list {
+    height: calc(100vh - 100px);
+  }
+
+  .friends img {
+    width: 30px;
+  }
+
+  .friends {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .friends p {
+    font-size: 10.5px;
+  }
+
+  .friends span {
+    font-size: 9px;
+  }
+}
+
+/* Extra small devices (older/smaller phones) */
+@media screen and (max-width: 320px) {
+  .ls-nav .logo {
+    max-width: 70px;
+  }
+
+  .friends img {
+    width: 26px;
+  }
+
+  .friends p {
+    font-size: 9.5px;
+  }
+
+  .friends span {
+    font-size: 8.5px;
+  }
+}
+
+
+
+/* =====================================================
+   UNREAD CHAT
+===================================================== */
+
+.friends.unread-chat {
+  background: rgba(0, 191, 255, 0.10);
+}
+
+
+/* =====================================================
+   SELECTED CHAT
+===================================================== */
+
+.friends.selected-chat {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* =====================================================
+   RIGHT SIDE OF CHAT ITEM
+===================================================== */
+
+.chat-list-right {
+  margin-left: auto;
+
+  min-width: 45px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  gap: 5px;
+}
+
+
+/* =====================================================
+   LAST MESSAGE TIME
+===================================================== */
+
+.last-message-time {
+  color: #8d8d8d;
+
+  font-size: 10px;
+
+  white-space: nowrap;
+}
+
+
+/* =====================================================
+   UNREAD BADGE
+===================================================== */
+
+.unread-badge {
+  min-width: 18px;
+
+  height: 18px;
+
+  padding: 0 5px;
+
+  border-radius: 50px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #00bfff;
+
+  color: #ffffff;
+
+  font-size: 10px;
+
+  font-weight: 300;
+
+  line-height: 10px;
+}
+
+
+/* =====================================================
+   UNREAD USER NAME
+===================================================== */
+
+.friends.unread-chat p {
+  color: #ffffff;
+
+  font-weight: 600;
+}
+
+
+/* =====================================================
+   UNREAD LAST MESSAGE
+===================================================== */
+
+.friends.unread-chat span {
+  color: #00bfff;
+
+  font-weight: 500;
+}

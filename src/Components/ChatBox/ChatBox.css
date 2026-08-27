@@ -1,0 +1,1389 @@
+/* =====================================================
+   MAIN CHAT BOX
+===================================================== */
+
+.chat-box {
+  height: 95vh;
+  width: 100%;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background: #1c1c1d;
+
+  color: #ffffff;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.chat-user {
+  min-height: 65px;
+
+  padding: 10px 15px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+
+  background: #181818;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chat-user > img:first-child {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+.chat-user-info {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.chat-user-info p {
+  margin: 0;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  color: #eeeeee;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.chat-user-info span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #42d77d;
+
+  font-size: 11px;
+}
+
+.chat-user .help {
+  width: 24px;
+  height: 24px;
+
+  object-fit: contain;
+
+  cursor: pointer;
+
+  opacity: 0.8;
+}
+
+/* =====================================================
+   MESSAGE AREA
+===================================================== */
+
+.chat-msg {
+  flex: 1;
+
+  min-height: 0;
+
+  padding: 20px 15px 80px;
+
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  scrollbar-width: thin;
+
+  scrollbar-color: #444 transparent;
+}
+
+.chat-msg::-webkit-scrollbar {
+  width: 5px;
+}
+
+.chat-msg::-webkit-scrollbar-thumb {
+  background: #444;
+
+  border-radius: 10px;
+}
+
+/* =====================================================
+   MESSAGE ROW
+===================================================== */
+
+.message-row {
+  width: 100%;
+
+  display: flex;
+
+  margin-bottom: 3px;
+}
+
+.message-row.sent {
+  justify-content: flex-end;
+}
+
+.message-row.received {
+  justify-content: flex-start;
+}
+
+/* =====================================================
+   MESSAGE BUBBLE
+===================================================== */
+
+.message-bubble {
+  position: relative;
+
+  width: fit-content;
+
+  min-width: 45px;
+
+  max-width: min(70%, 420px);
+
+  padding: 8px 10px 5px;
+
+  border-radius: 10px;
+
+  box-sizing: border-box;
+}
+
+.message-row.sent .message-bubble {
+  background: #2485cbd1;
+
+  border-radius: 10px 10px 3px 10px;
+}
+
+.message-row.received .message-bubble {
+  background: #252525;
+
+  border-radius: 10px 10px 10px 3px;
+}
+
+/* =====================================================
+   MESSAGE TEXT
+===================================================== */
+
+.message-bubble p {
+  margin: 0;
+
+  padding-right: 5px;
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  line-height: 1.45;
+
+  white-space: pre-wrap;
+
+  word-break: break-word;
+}
+
+/* =====================================================
+   EMOJI MESSAGE
+===================================================== */
+
+.message-bubble p.emoji-message {
+  padding: 0;
+
+  font-size: 32px;
+
+  line-height: 1.2;
+}
+
+/* =====================================================
+   TIME
+===================================================== */
+
+.message-time {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 4px;
+
+  margin-top: 3px;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 9px;
+
+  line-height: 12px;
+}
+
+.message-check {
+  color: #ffffff;
+
+  font-size: 10px;
+
+  letter-spacing: -3px;
+
+  margin-right: 2px;
+}
+
+.edited-label {
+  font-size: 9px;
+
+  font-style: italic;
+
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* =====================================================
+   THREE DOT MESSAGE MENU
+===================================================== */
+
+.message-menu {
+  position: absolute;
+
+  top: 4px;
+  right: 4px;
+
+  z-index: 50;
+}
+
+.message-menu-trigger {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.25);
+
+  color: #ffffff;
+
+  font-size: 18px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition:
+    opacity 0.15s ease,
+    background 0.15s ease;
+}
+
+.message-bubble:hover .message-menu-trigger {
+  opacity: 1;
+
+  visibility: visible;
+}
+
+.message-menu-trigger:hover {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* =====================================================
+   DROPDOWN
+===================================================== */
+
+.message-menu-dropdown {
+  position: absolute;
+
+  top: 29px;
+  right: 0;
+
+  width: 125px;
+
+  padding: 5px;
+
+  background: #222222;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 8px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+
+  animation: messageMenuShow 0.15s ease;
+}
+
+@keyframes messageMenuShow {
+  from {
+    opacity: 0;
+
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+/* =====================================================
+   DROPDOWN BUTTON
+===================================================== */
+
+.message-menu-dropdown button {
+  width: 100%;
+
+  height: 34px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 0 9px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: transparent;
+
+  color: #eeeeee;
+
+  font-size: 12px;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.message-menu-dropdown button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.message-menu-dropdown button span {
+  width: 18px;
+
+  text-align: center;
+
+  font-size: 13px;
+}
+
+.message-menu-dropdown .delete-option:hover {
+  background: rgba(255, 70, 70, 0.12);
+
+  color: #ff6666;
+}
+
+/* =====================================================
+   IMAGE MESSAGE
+===================================================== */
+
+.chat-media-image {
+  display: block;
+
+  width: 100%;
+
+  max-width: 280px;
+
+  max-height: 350px;
+
+  object-fit: cover;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  margin-bottom: 2px;
+}
+
+/* =====================================================
+   VIDEO MESSAGE
+===================================================== */
+
+.chat-media-video {
+  display: block;
+
+  width: 100%;
+
+  max-width: 320px;
+
+  max-height: 360px;
+
+  background: #000000;
+
+  border-radius: 8px;
+
+  margin-bottom: 2px;
+}
+
+/* =====================================================
+   EMPTY CHAT
+===================================================== */
+
+.chat-empty {
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-direction: column;
+
+  padding: 20px;
+
+  text-align: center;
+
+  background: #121212;
+}
+
+.chat-empty img {
+  width: 70px;
+  height: 70px;
+
+  object-fit: contain;
+
+  margin-bottom: 15px;
+
+  opacity: 0.9;
+}
+
+.chat-empty h2 {
+  margin: 0 0 8px;
+
+  color: #eeeeee;
+
+  font-size: 20px;
+}
+
+.chat-empty p {
+  margin: 0;
+
+  color: #888888;
+
+  font-size: 13px;
+}
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.chat-loading {
+  margin: auto;
+
+  color: #888888;
+
+  font-size: 13px;
+}
+
+/* =====================================================
+   NO MESSAGE
+===================================================== */
+
+.no-message {
+  margin: auto;
+
+  text-align: center;
+}
+
+.no-message p {
+  margin: 0 0 5px;
+
+  color: #dddddd;
+
+  font-size: 14px;
+}
+
+.no-message span {
+  color: #777777;
+
+  font-size: 11px;
+}
+
+/* =====================================================
+   MEDIA PREVIEW
+===================================================== */
+
+.media-preview {
+  min-height: 70px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 7px 14px;
+
+  flex-shrink: 0;
+
+  background: #1d1d1d;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.media-preview-content {
+  position: relative;
+
+  width: 55px;
+  height: 55px;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  border-radius: 7px;
+
+  background: #000000;
+}
+
+.media-preview-content img,
+.media-preview-content video {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.media-preview-content > button {
+  position: absolute;
+
+  top: 3px;
+  right: 3px;
+
+  width: 19px;
+  height: 19px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.75);
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.media-preview > span {
+  max-width: 250px;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  color: #999999;
+
+  font-size: 11px;
+}
+
+/* =====================================================
+   EDIT MESSAGE BAR
+===================================================== */
+
+.edit-message-bar {
+  min-height: 55px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding: 7px 14px;
+
+  flex-shrink: 0;
+
+  background: #1d1d1d;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+  border-left: 3px solid #087ff5;
+}
+
+.edit-message-bar > div {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.edit-message-bar span {
+  display: block;
+
+  margin-bottom: 2px;
+
+  color: #087ff5;
+
+  font-size: 11px;
+
+  font-weight: 600;
+}
+
+.edit-message-bar p {
+  margin: 0;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  color: #999999;
+
+  font-size: 11px;
+}
+
+.edit-message-bar > button {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: #999999;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+.edit-message-bar > button:hover {
+  background: rgba(255, 255, 255, 0.08);
+
+  color: #ffffff;
+}
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.chat-input {
+  position: relative;
+
+  min-height: 60px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 8px 12px;
+
+  flex-shrink: 0;
+
+  background: #1b1b1b;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chat-input > input[type="text"] {
+  min-width: 0;
+
+  flex: 1;
+
+  height: 42px;
+
+  padding: 0 14px;
+
+  border: none;
+
+  outline: none;
+
+  border-radius: 22px;
+
+  background: #292929;
+
+  color: #eeeeee;
+
+  font-size: 13px;
+}
+
+.chat-input > input[type="text"]::placeholder {
+  color: #777777;
+}
+
+.chat-input > input[type="text"]:focus {
+  background: #303030;
+}
+
+/* =====================================================
+   EMOJI BUTTON
+===================================================== */
+
+.emoji-button {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #292929;
+
+  color: #eeeeee;
+
+  font-size: 21px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.emoji-button:hover {
+  background: #353535;
+
+  transform: scale(1.06);
+}
+
+.emoji-button:active {
+  transform: scale(0.95);
+}
+
+/* =====================================================
+   EMOJI PICKER CONTAINER
+===================================================== */
+
+.emoji-picker-container {
+  position: absolute;
+
+  right: 12px;
+
+  bottom: 68px;
+
+  z-index: 100;
+
+  width: 320px;
+
+  animation: emojiPickerShow 0.18s ease;
+}
+
+/* =====================================================
+   EMOJI PICKER
+===================================================== */
+
+.emoji-picker {
+  width: 100%;
+
+  max-height: 360px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background: #202020;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.55),
+    0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* =====================================================
+   EMOJI PICKER HEADER
+===================================================== */
+
+.emoji-picker-header {
+  height: 45px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 12px;
+
+  flex-shrink: 0;
+
+  background: #242424;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.emoji-picker-header span {
+  color: #eeeeee;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.emoji-picker-close {
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: #999999;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.emoji-picker-close:hover {
+  background: rgba(255, 255, 255, 0.08);
+
+  color: #ffffff;
+}
+
+/* =====================================================
+   EMOJI SEARCH
+===================================================== */
+
+.emoji-search {
+  height: 34px;
+
+  margin: 8px 10px;
+
+  padding: 0 12px;
+
+  border: none;
+
+  outline: none;
+
+  border-radius: 17px;
+
+  background: #303030;
+
+  color: #eeeeee;
+
+  font-size: 12px;
+
+  box-sizing: border-box;
+}
+
+.emoji-search::placeholder {
+  color: #777777;
+}
+
+.emoji-search:focus {
+  background: #353535;
+
+  box-shadow: 0 0 0 1px rgba(8, 127, 245, 0.4);
+}
+
+/* =====================================================
+   EMOJI LIST
+===================================================== */
+
+.emoji-list {
+  flex: 1;
+
+  min-height: 0;
+
+  padding: 8px;
+
+  overflow-y: auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(8, 1fr);
+
+  gap: 3px;
+
+  scrollbar-width: thin;
+
+  scrollbar-color: #444 transparent;
+}
+
+.emoji-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.emoji-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.emoji-list::-webkit-scrollbar-thumb {
+  background: #444;
+
+  border-radius: 10px;
+}
+
+/* =====================================================
+   EMOJI ITEM
+===================================================== */
+
+.emoji-item {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 7px;
+
+  background: transparent;
+
+  color: #ffffff;
+
+  font-size: 21px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    transform 0.12s ease;
+}
+
+.emoji-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+
+  transform: scale(1.15);
+}
+
+.emoji-item:active {
+  transform: scale(0.9);
+}
+
+/* =====================================================
+   EMOJI CATEGORY
+===================================================== */
+
+.emoji-category {
+  grid-column: 1 / -1;
+
+  padding: 7px 4px 4px;
+
+  color: #888888;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+}
+
+/* =====================================================
+   RECENT EMOJI
+===================================================== */
+
+.emoji-recent {
+  padding: 8px 10px;
+
+  background: #242424;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.emoji-recent-title {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #777777;
+
+  font-size: 10px;
+
+  font-weight: 600;
+}
+
+/* =====================================================
+   EMOJI PICKER ANIMATION
+===================================================== */
+
+@keyframes emojiPickerShow {
+  from {
+    opacity: 0;
+
+    transform: translateY(8px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =====================================================
+   MEDIA BUTTON
+===================================================== */
+
+.media-button {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #d4e0ec;
+
+  flex-shrink: 0;
+
+  cursor: pointer;
+
+  border-radius: 50%;
+}
+
+.media-button:hover {
+  background: rgba(212, 227, 218, 0.847);
+}
+
+.media-button img {
+  width: 22px;
+  height: 22px;
+
+  object-fit: contain;
+
+  opacity: 0.8;
+}
+
+/* =====================================================
+   SEND BUTTON
+===================================================== */
+
+.chat-input > button[type="submit"] {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #087ff5;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.chat-input > button[type="submit"]:hover {
+  background: #066ed5;
+
+  transform: scale(1.04);
+}
+
+.chat-input > button[type="submit"]:disabled {
+  background: #333333;
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  opacity: 0.5;
+}
+
+.chat-input > button[type="submit"] img {
+  width: 19px;
+  height: 19px;
+
+  object-fit: contain;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+  .chat-box {
+    height: 100vh;
+  }
+
+  .chat-user {
+    min-height: 58px;
+
+    padding: 8px 10px;
+  }
+
+  .chat-user > img:first-child {
+    width: 36px;
+    height: 36px;
+  }
+
+  .chat-user-info p {
+    font-size: 13px;
+  }
+
+  .chat-msg {
+    padding: 15px 9px 75px;
+  }
+
+  .message-bubble {
+    max-width: 82%;
+
+    padding: 7px 9px 5px;
+  }
+
+  .message-bubble p {
+    font-size: 13px;
+  }
+
+  .message-bubble p.emoji-message {
+    font-size: 29px;
+  }
+
+  .chat-media-image {
+    max-width: 230px;
+
+    max-height: 300px;
+  }
+
+  .chat-media-video {
+    max-width: 260px;
+
+    max-height: 300px;
+  }
+
+  /* MOBILE MENU */
+
+  .message-menu-trigger {
+    opacity: 0.65;
+
+    visibility: visible;
+  }
+
+  .message-menu-dropdown {
+    width: 120px;
+  }
+
+  /* MOBILE INPUT */
+
+  .chat-input {
+    min-height: 58px;
+
+    padding: 7px 8px;
+
+    gap: 6px;
+  }
+
+  .chat-input > input[type="text"] {
+    height: 40px;
+
+    padding: 0 12px;
+
+    font-size: 13px;
+  }
+
+  /* MOBILE EMOJI BUTTON */
+
+  .emoji-button {
+    width: 34px;
+    height: 34px;
+
+    font-size: 20px;
+  }
+
+  /* MOBILE EMOJI PICKER */
+
+  .emoji-picker-container {
+    right: 7px;
+
+    bottom: 63px;
+
+    width: 300px;
+  }
+
+  .emoji-picker {
+    max-height: 340px;
+
+    border-radius: 11px;
+  }
+
+  .emoji-list {
+    grid-template-columns: repeat(7, 1fr);
+
+    padding: 7px;
+
+    gap: 3px;
+  }
+
+  .emoji-item {
+    width: 36px;
+    height: 36px;
+
+    font-size: 21px;
+  }
+
+  /* MOBILE MEDIA */
+
+  .media-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .chat-input > button[type="submit"] {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* MOBILE EDIT */
+
+  .edit-message-bar {
+    min-height: 52px;
+
+    padding: 6px 9px;
+  }
+
+  /* MOBILE PREVIEW */
+
+  .media-preview {
+    padding: 6px 9px;
+  }
+}
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+  .message-bubble {
+    max-width: 88%;
+  }
+
+  .chat-media-image {
+    max-width: 200px;
+  }
+
+  .chat-media-video {
+    max-width: 220px;
+  }
+
+  .message-menu-dropdown {
+    width: 110px;
+  }
+
+  .emoji-picker-container {
+    right: 5px;
+
+    width: calc(100vw - 10px);
+
+    max-width: 290px;
+  }
+
+  .emoji-picker {
+    max-height: 320px;
+  }
+
+  .emoji-list {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .emoji-item {
+    width: 34px;
+    height: 34px;
+
+    font-size: 20px;
+  }
+}
+
+/* =====================================================
+   EXTRA SMALL MOBILE
+===================================================== */
+
+@media (max-width: 320px) {
+  .emoji-picker-container {
+    width: calc(100vw - 8px);
+
+    right: 4px;
+  }
+
+  .emoji-list {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .emoji-item {
+    width: 36px;
+    height: 36px;
+  }
+}
