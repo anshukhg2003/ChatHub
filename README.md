@@ -99,7 +99,8 @@ ChatHub is designed for:
 ## 🔐 Login Page
 
 <p align="center">
-  <img src="screenshots/login.png" alt="ChatHub Login" width="800"/>
+  <img src="<img width="1366" height="768" alt="Screenshot (214)" src="https://github.com/user-attachments/assets/0bab9736-76e6-45ab-a527-75274575308b" />
+" alt="ChatHub Login" width="800"/>
 </p>
 
 ---
@@ -107,7 +108,8 @@ ChatHub is designed for:
 ## 💬 Chat Interface
 
 <p align="center">
-  <img src="screenshots/chat.png" alt="ChatHub Chat" width="800"/>
+  <img src="<img width="1366" height="768" alt="Screenshot (215)" src="https://github.com/user-attachments/assets/46d63957-3fc0-4872-aa22-44af810be6ec" />
+" alt="ChatHub Chat" width="800"/>
 </p>
 
 ---
@@ -115,7 +117,8 @@ ChatHub is designed for:
 ## 📱 Mobile View
 
 <p align="center">
-  <img src="screenshots/mobile.png" alt="ChatHub Mobile" width="350"/>
+  <img src="<img width="1366" height="768" alt="Screenshot (216)" src="https://github.com/user-attachments/assets/2ff9c87c-f6c1-4729-ab00-862b6368633b" />
+" alt="ChatHub Mobile" width="350"/>
 </p>
 
 > 📌 Replace the screenshot paths above with your actual screenshots.
@@ -437,9 +440,6 @@ Through this project, I gained practical experience with:
 
 The following features are planned for future versions:
 
-* 🎤 Voice Messages
-* 🎥 Video Calling
-* 📞 Voice Calling
 * 📎 File Sharing
 * 🟢 Online / Offline Status
 * ✍️ Typing Indicator
@@ -448,7 +448,6 @@ The following features are planned for future versions:
 * ✏️ Edit Messages
 * 🔔 Notifications
 * 🔍 Message Search
-* 👥 Group Chats
 * 🌙 Theme Customization
 
 ---
