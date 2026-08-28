@@ -1387,3 +1387,29 @@
     height: 36px;
   }
 }
+
+
+
+
+
+/* =====================================================
+   TYPING INDICATOR
+===================================================== */
+
+.typing-indicator {
+  color: #00bfff !important;
+  font-size: 12px;
+  font-weight: 500;
+  animation: typingPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes typingPulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
