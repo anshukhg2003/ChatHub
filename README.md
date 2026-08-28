@@ -3,7 +3,8 @@
 ### 🚀 Modern Real-Time Chat Application
 
 <p align="center">
-  <img src="public/logo.svg" alt="ChatHub" width="100"/>
+  <img src="https://github.com/user-attachments/assets/1709799b-39fe-4526-b28d-6c991f22b124" />
+ alt="ChatHub" width="100"/>
 </p>
 
 <p align="center">
@@ -99,8 +100,8 @@ ChatHub is designed for:
 ## 🔐 Login Page
 
 <p align="center">
-  <img src="<img width="1366" height="768" alt="Screenshot (214)" src="https://github.com/user-attachments/assets/0bab9736-76e6-45ab-a527-75274575308b" />
-" alt="ChatHub Login" width="800"/>
+  <img src="https://github.com/user-attachments/assets/0bab9736-76e6-45ab-a527-75274575308b" />
+ alt="ChatHub Login" width="800"/>
 </p>
 
 ---
@@ -108,8 +109,8 @@ ChatHub is designed for:
 ## 💬 Chat Interface
 
 <p align="center">
-  <img src="<img width="1366" height="768" alt="Screenshot (215)" src="https://github.com/user-attachments/assets/46d63957-3fc0-4872-aa22-44af810be6ec" />
-" alt="ChatHub Chat" width="800"/>
+  <img  src="https://github.com/user-attachments/assets/46d63957-3fc0-4872-aa22-44af810be6ec" />
+ alt="ChatHub Chat" width="800"/>
 </p>
 
 ---
@@ -117,7 +118,7 @@ ChatHub is designed for:
 ## 📱 Mobile View
 
 <p align="center">
-  <img src="<img width="1366" height="768" alt="Screenshot (216)" src="https://github.com/user-attachments/assets/2ff9c87c-f6c1-4729-ab00-862b6368633b" />
+  <img src="https://github.com/user-attachments/assets/2ff9c87c-f6c1-4729-ab00-862b6368633b" />
 " alt="ChatHub Mobile" width="350"/>
 </p>
 
