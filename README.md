@@ -3,8 +3,7 @@
 ### 🚀 Modern Real-Time Chat Application
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/1709799b-39fe-4526-b28d-6c991f22b124" />
- alt="ChatHub" width="100"/>
+  <img src="https://github.com/user-attachments/assets/1709799b-39fe-4526-b28d-6c991f22b124"  width="100"/>
 </p>
 
 <p align="center">
@@ -113,14 +112,6 @@ ChatHub is designed for:
  alt="ChatHub Chat" width="800"/>
 </p>
 
----
-
-## 📱 Mobile View
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/2ff9c87c-f6c1-4729-ab00-862b6368633b" />
-" alt="ChatHub Mobile" width="350"/>
-</p>
 
 > 📌 Replace the screenshot paths above with your actual screenshots.
 
@@ -236,39 +227,6 @@ The application will be available at:
 ```text
 http://localhost:5173
 ```
-
----
-
-# 🔑 Environment Variables
-
-Create a `.env` file in the root directory:
-
-```env
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
-
-### ⚠️ Security
-
-**Never commit your `.env` file to GitHub.**
-
-Add the following to `.gitignore`:
-
-```gitignore
-.env
-.env.local
-.env.production
-```
-
-### 🚨 Important
-
-Do **not** put private Supabase credentials such as the `service_role` key inside frontend code or `VITE_` environment variables.
-
-Frontend environment variables are bundled into the browser and can be inspected by users.
-
-Use only the appropriate public client key on the frontend and protect sensitive operations with backend/server-side logic and Supabase security policies.
-
----
 
 # 🗄️ Supabase Configuration
 
