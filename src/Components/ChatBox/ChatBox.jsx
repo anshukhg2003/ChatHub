@@ -85,12 +85,13 @@ const ChatBox = ({ selectedUser }) => {
 
     getSession();
 
-    const { data: authListener } =
-      supabase.auth.onAuthStateChange((_event, newSession) => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (_event, newSession) => {
         if (mounted) {
           setSession(newSession);
         }
-      });
+      },
+    );
 
     return () => {
       mounted = false;
@@ -215,9 +216,7 @@ const ChatBox = ({ selectedUser }) => {
 
           setMessages((previousMessages) =>
             previousMessages.map((message) =>
-              message.id === updatedMessage.id
-                ? updatedMessage
-                : message,
+              message.id === updatedMessage.id ? updatedMessage : message,
             ),
           );
         },
@@ -326,9 +325,7 @@ const ChatBox = ({ selectedUser }) => {
   // =====================================================
 
   const handleEmojiClick = (emojiData) => {
-    setNewMessage(
-      (previousMessage) => previousMessage + emojiData.emoji,
-    );
+    setNewMessage((previousMessage) => previousMessage + emojiData.emoji);
 
     setShowEmojiPicker(false);
   };
@@ -456,8 +453,7 @@ const ChatBox = ({ selectedUser }) => {
 
     const messageType = isImage ? "image" : "video";
 
-    const extension =
-      file.name.split(".").pop()?.toLowerCase() || "file";
+    const extension = file.name.split(".").pop()?.toLowerCase() || "file";
 
     const fileName = `${Date.now()}-${crypto.randomUUID()}.${extension}`;
 
@@ -465,20 +461,16 @@ const ChatBox = ({ selectedUser }) => {
 
     const filePath = `${folder}/${session.user.id}/${fileName}`;
 
-    const { data: uploadData, error: uploadError } =
-      await supabase.storage
-        .from(CHAT_MEDIA_BUCKET)
-        .upload(filePath, file, {
-          cacheControl: "3600",
-          upsert: false,
-          contentType: file.type,
-        });
+    const { data: uploadData, error: uploadError } = await supabase.storage
+      .from(CHAT_MEDIA_BUCKET)
+      .upload(filePath, file, {
+        cacheControl: "3600",
+        upsert: false,
+        contentType: file.type,
+      });
 
     if (uploadError) {
-      console.error(
-        "SUPABASE STORAGE ERROR:",
-        uploadError,
-      );
+      console.error("SUPABASE STORAGE ERROR:", uploadError);
 
       throw uploadError;
     }
@@ -599,9 +591,7 @@ const ChatBox = ({ selectedUser }) => {
       // =================================================
 
       setMessages((previousMessages) => {
-        const exists = previousMessages.some(
-          (item) => item.id === data.id,
-        );
+        const exists = previousMessages.some((item) => item.id === data.id);
 
         if (exists) {
           return previousMessages;
@@ -721,9 +711,7 @@ const ChatBox = ({ selectedUser }) => {
       return;
     }
 
-    const confirmed = window.confirm(
-      "Delete this message?",
-    );
+    const confirmed = window.confirm("Delete this message?");
 
     if (!confirmed) {
       return;
@@ -738,10 +726,7 @@ const ChatBox = ({ selectedUser }) => {
         .select();
 
       if (error) {
-        console.error(
-          "SUPABASE DELETE ERROR:",
-          error,
-        );
+        console.error("SUPABASE DELETE ERROR:", error);
 
         alert(error.message);
 
@@ -749,30 +734,20 @@ const ChatBox = ({ selectedUser }) => {
       }
 
       if (!data || data.length === 0) {
-        alert(
-          "Message was not deleted. Check your Supabase DELETE policy.",
-        );
+        alert("Message was not deleted. Check your Supabase DELETE policy.");
 
         return;
       }
 
       setMessages((previousMessages) =>
-        previousMessages.filter(
-          (item) => item.id !== message.id,
-        ),
+        previousMessages.filter((item) => item.id !== message.id),
       );
 
       setOpenMenuId(null);
     } catch (error) {
-      console.error(
-        "Unexpected delete error:",
-        error,
-      );
+      console.error("Unexpected delete error:", error);
 
-      alert(
-        error.message ||
-          "Something went wrong while deleting.",
-      );
+      alert(error.message || "Something went wrong while deleting.");
     }
   };
 
@@ -823,10 +798,7 @@ const ChatBox = ({ selectedUser }) => {
     return (
       <div className="chat-box">
         <div className="chat-empty">
-          <img
-            src={assets.ChatHub_icon2}
-            alt="ChatHub"
-          />
+          <img src={assets.ChatHub_icon2} alt="ChatHub" />
 
           <h2>Chat anytime, anywhere</h2>
 
@@ -847,34 +819,19 @@ const ChatBox = ({ selectedUser }) => {
       ================================================= */}
 
       <div className="chat-user">
-        <img
-          src={
-            selectedUser.avatar_url ||
-            assets.profile_img
-          }
-          alt="User"
-        />
+        <img src={selectedUser.avatar_url || assets.profile_img} alt="User" />
 
         <div className="chat-user-info">
-          <p>
-            {selectedUser.full_name ||
-              "Unknown User"}
-          </p>
+          <p>{selectedUser.full_name || "Unknown User"}</p>
 
           {receiverTyping ? (
-            <span className="typing-indicator">
-              typing...
-            </span>
+            <span className="typing-indicator">typing...</span>
           ) : (
             <span>online</span>
           )}
         </div>
 
-        <img
-          src={assets.help_icon}
-          alt="Help"
-          className="help"
-        />
+        <img src={assets.help_icon} alt="Help" className="help" />
       </div>
 
       {/* =================================================
@@ -890,11 +847,7 @@ const ChatBox = ({ selectedUser }) => {
       >
         {/* LOADING */}
 
-        {loading && (
-          <div className="chat-loading">
-            Loading messages...
-          </div>
-        )}
+        {loading && <div className="chat-loading">Loading messages...</div>}
 
         {/* EMPTY */}
 
@@ -902,9 +855,7 @@ const ChatBox = ({ selectedUser }) => {
           <div className="no-message">
             <p>No messages yet 👋</p>
 
-            <span>
-              Send a message to start chatting
-            </span>
+            <span>Send a message to start chatting</span>
           </div>
         )}
 
@@ -914,76 +865,57 @@ const ChatBox = ({ selectedUser }) => {
 
         {!loading &&
           messages.map((msg) => {
-            const isMyMessage =
-              msg.sender_id ===
-              session?.user?.id;
+            const isMyMessage = msg.sender_id === session?.user?.id;
 
             const isEdited =
               msg.updated_at &&
               new Date(msg.updated_at).getTime() >
-                new Date(msg.created_at).getTime() +
-                  1000;
+                new Date(msg.created_at).getTime() + 1000;
 
             return (
               <div
                 key={msg.id}
                 className={
-                  isMyMessage
-                    ? "message-row sent"
-                    : "message-row received"
+                  isMyMessage ? "message-row sent" : "message-row received"
                 }
               >
                 <div
                   className="message-bubble"
-                  onClick={(e) =>
-                    e.stopPropagation()
-                  }
+                  onClick={(e) => e.stopPropagation()}
                 >
                   {/* IMAGE */}
 
-                  {msg.message_type === "image" &&
-                    msg.media_url && (
-                      <img
-                        src={msg.media_url}
-                        alt="Shared"
-                        className="chat-media-image"
-                      />
-                    )}
+                  {msg.message_type === "image" && msg.media_url && (
+                    <img
+                      src={msg.media_url}
+                      alt="Shared"
+                      className="chat-media-image"
+                    />
+                  )}
 
                   {/* VIDEO */}
 
-                  {msg.message_type === "video" &&
-                    msg.media_url && (
-                      <video
-                        src={msg.media_url}
-                        className="chat-media-video"
-                        controls
-                        playsInline
-                      />
-                    )}
+                  {msg.message_type === "video" && msg.media_url && (
+                    <video
+                      src={msg.media_url}
+                      className="chat-media-video"
+                      controls
+                      playsInline
+                    />
+                  )}
 
                   {/* TEXT + EMOJI */}
 
-                  {msg.message && (
-                    <p>{msg.message}</p>
-                  )}
+                  {msg.message && <p>{msg.message}</p>}
 
                   {/* TIME */}
 
                   <span className="message-time">
-                    {isEdited && (
-                      <span className="edited-label">
-                        edited
-                      </span>
-                    )}
+                    {isEdited && <span className="edited-label">edited</span>}
 
                     {formatTime(msg.created_at)}
 
-                    {isMyMessage && (
-                      <span className="message-check">
-                        ✓✓
-                      </span>
-                    )}
+                    {isMyMessage && <span className="message-check">✓✓</span>}
                   </span>
 
                   {/* MESSAGE MENU */}
@@ -994,11 +926,7 @@ const ChatBox = ({ selectedUser }) => {
                         type="button"
                         className="message-menu-trigger"
                         onClick={() =>
-                          setOpenMenuId(
-                            openMenuId === msg.id
-                              ? null
-                              : msg.id,
-                          )
+                          setOpenMenuId(openMenuId === msg.id ? null : msg.id)
                         }
                       >
                         ⋮
@@ -1008,15 +936,10 @@ const ChatBox = ({ selectedUser }) => {
                         <div className="message-menu-dropdown">
                           {/* EDIT */}
 
-                          {msg.message_type ===
-                            "text" && (
+                          {msg.message_type === "text" && (
                             <button
                               type="button"
-                              onClick={() =>
-                                startEditMessage(
-                                  msg,
-                                )
-                              }
+                              onClick={() => startEditMessage(msg)}
                             >
                               ✏️ Edit
                             </button>
@@ -1027,9 +950,7 @@ const ChatBox = ({ selectedUser }) => {
                           <button
                             type="button"
                             className="delete-option"
-                            onClick={() =>
-                              deleteMessage(msg)
-                            }
+                            onClick={() => deleteMessage(msg)}
                           >
                             🗑️ Delete
                           </button>
@@ -1052,24 +973,13 @@ const ChatBox = ({ selectedUser }) => {
       {selectedFile && previewUrl && (
         <div className="media-preview">
           <div className="media-preview-content">
-            {selectedFile.type.startsWith(
-              "image/",
-            ) ? (
-              <img
-                src={previewUrl}
-                alt="Preview"
-              />
+            {selectedFile.type.startsWith("image/") ? (
+              <img src={previewUrl} alt="Preview" />
             ) : (
-              <video
-                src={previewUrl}
-                controls
-              />
+              <video src={previewUrl} controls />
             )}
 
-            <button
-              type="button"
-              onClick={removeSelectedFile}
-            >
+            <button type="button" onClick={removeSelectedFile}>
               ×
             </button>
           </div>
@@ -1090,10 +1000,7 @@ const ChatBox = ({ selectedUser }) => {
             <p>{editingMessage.message}</p>
           </div>
 
-          <button
-            type="button"
-            onClick={cancelEdit}
-          >
+          <button type="button" onClick={cancelEdit}>
             ×
           </button>
         </div>
@@ -1111,9 +1018,7 @@ const ChatBox = ({ selectedUser }) => {
         {showEmojiPicker && !editingMessage && (
           <div
             className="emoji-picker-container"
-            onClick={(e) =>
-              e.stopPropagation()
-            }
+            onClick={(e) => e.stopPropagation()}
           >
             <EmojiPicker
               onEmojiClick={handleEmojiClick}
@@ -1131,10 +1036,7 @@ const ChatBox = ({ selectedUser }) => {
             INPUT
         ================================================= */}
 
-        <form
-          className="chat-input"
-          onSubmit={sendMessage}
-        >
+        <form className="chat-input" onSubmit={sendMessage}>
           <input
             type="text"
             placeholder={
@@ -1145,9 +1047,7 @@ const ChatBox = ({ selectedUser }) => {
                   : "Write a message..."
             }
             value={newMessage}
-            onChange={(e) =>
-              handleTyping(e.target.value)
-            }
+            onChange={(e) => handleTyping(e.target.value)}
             onKeyDown={handleKeyDown}
             disabled={sending || uploading}
           />
@@ -1160,14 +1060,8 @@ const ChatBox = ({ selectedUser }) => {
             <button
               type="button"
               className="emoji-button"
-              onClick={() =>
-                setShowEmojiPicker(
-                  (previous) => !previous,
-                )
-              }
-              disabled={
-                sending || uploading
-              }
+              onClick={() => setShowEmojiPicker((previous) => !previous)}
+              disabled={sending || uploading}
               title="Emoji"
             >
               😊
@@ -1184,11 +1078,7 @@ const ChatBox = ({ selectedUser }) => {
             id="chat-media-input"
             accept="image/*,video/*"
             hidden
-            disabled={
-              !!editingMessage ||
-              sending ||
-              uploading
-            }
+            disabled={!!editingMessage || sending || uploading}
             onChange={handleFileSelect}
           />
 
@@ -1202,10 +1092,7 @@ const ChatBox = ({ selectedUser }) => {
               className="media-button"
               title="Photo / Video"
             >
-              <img
-                src={assets.gallery_icon}
-                alt="Media"
-              />
+              <img src={assets.gallery_icon} alt="Media" />
             </label>
           )}
 
@@ -1216,17 +1103,11 @@ const ChatBox = ({ selectedUser }) => {
           <button
             type="submit"
             disabled={
-              sending ||
-              uploading ||
-              (!newMessage.trim() &&
-                !selectedFile)
+              sending || uploading || (!newMessage.trim() && !selectedFile)
             }
             title="Send"
           >
-            <img
-              src={assets.send}
-              alt="Send"
-            />
+            <img src={assets.send} alt="Send" />
           </button>
         </form>
       </div>
