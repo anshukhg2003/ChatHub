@@ -145,6 +145,33 @@ const ChatBox = ({ selectedUser }) => {
     loadMessages();
   }, [session, selectedUser]);
 
+
+
+  // =====================================================
+// MARK RECEIVED MESSAGES AS READ
+// =====================================================
+
+useEffect(() => {
+  if (!session?.user?.id || !selectedUser?.id) return;
+
+  const markMessagesAsRead = async () => {
+    const { error } = await supabase
+      .from("messages")
+      .update({
+        is_read: true,
+      })
+      .eq("sender_id", selectedUser.id)
+      .eq("receiver_id", session.user.id)
+      .eq("is_read", false);
+
+    if (error) {
+      console.error("Error marking messages as read:", error);
+    }
+  };
+
+  markMessagesAsRead();
+}, [session?.user?.id, selectedUser?.id]);
+
   // =====================================================
   // REALTIME CHAT
   // =====================================================
@@ -578,6 +605,7 @@ const ChatBox = ({ selectedUser }) => {
           message: text || null,
           message_type: messageType,
           media_url: mediaUrl,
+          is_read: false,
         })
         .select()
         .single();

@@ -83,7 +83,8 @@ const LeftSideBar = ({ selectedUser, setSelectedUser }) => {
           message_type,
           media_url,
           created_at,
-          updated_at
+          updated_at,
+          is_read
         `,
         )
         .or(`sender_id.eq.${user.id},receiver_id.eq.${user.id}`)
@@ -122,19 +123,22 @@ const LeftSideBar = ({ selectedUser, setSelectedUser }) => {
           );
         });
 
-        // Because messages are already ordered
-        // newest first, [0] is the latest message.
-
         const lastMessage = conversationMessages[0] || null;
+
+        // Count unread messages received by current user
+        const unreadCount = conversationMessages.filter((message) => {
+          return (
+            message.sender_id === profile.id &&
+            message.receiver_id === user.id &&
+            message.is_read === false
+          );
+        }).length;
 
         return {
           ...profile,
-
           lastMessage,
-
           lastMessageAt: lastMessage?.created_at || null,
-
-          unreadCount: 0,
+          unreadCount,
         };
       });
 
@@ -497,22 +501,44 @@ const LeftSideBar = ({ selectedUser, setSelectedUser }) => {
   // SELECT USER
   // =====================================================
 
-  const handleSelectUser = (user) => {
-    setUsers((previousUsers) =>
-      previousUsers.map((item) => {
-        if (item.id === user.id) {
-          return {
+  const handleSelectUser = async (user) => {
+  // Open selected chat
+  setSelectedUser(user);
+
+  // Remove notification immediately
+  setUsers((previousUsers) =>
+    previousUsers.map((item) =>
+      item.id === user.id
+        ? {
             ...item,
             unreadCount: 0,
-          };
-        }
+          }
+        : item,
+    ),
+  );
 
-        return item;
-      }),
-    );
+  // Current user not available
+  if (!currentUser?.id) {
+    return;
+  }
 
-    setSelectedUser(user);
-  };
+  // Mark received messages as read in database
+  const { error } = await supabase
+    .from("messages")
+    .update({
+      is_read: true,
+    })
+    .eq("sender_id", user.id)
+    .eq("receiver_id", currentUser.id)
+    .eq("is_read", false);
+
+  if (error) {
+    console.error("Mark as read error:", error);
+
+    // Reload actual unread count if database update fails
+    getUsers();
+  }
+};
 
   // =====================================================
   // SEARCH
