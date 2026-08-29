@@ -100,7 +100,6 @@ ChatHub is designed for:
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/0bab9736-76e6-45ab-a527-75274575308b" />
- alt="ChatHub Login" width=800/>
 </p>
 
 ---
@@ -110,9 +109,6 @@ ChatHub is designed for:
 <p align="center">
   <img  src="https://github.com/user-attachments/assets/46d63957-3fc0-4872-aa22-44af810be6ec" />
 </p>
-
-
-> 📌 Replace the screenshot paths above with your actual screenshots.
 
 ---
 
