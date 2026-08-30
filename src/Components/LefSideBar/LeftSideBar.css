@@ -133,9 +133,6 @@
 
 
 
-
-
-
 /* ================= RESPONSIVE MEDIA QUERIES ================= */
 
 /* Laptops / small desktops */
@@ -317,22 +314,12 @@
 }
 
 
-
-/* =====================================================
-   UNREAD CHAT
-===================================================== */
-
-.friends.unread-chat {
-  background: rgba(0, 191, 255, 0.10);
-}
-
-
 /* =====================================================
    SELECTED CHAT
 ===================================================== */
 
 .friends.selected-chat {
-  background: rgba(255, 255, 255, 0.08);
+ background: rgba(255, 255, 255, 0.08); 
 }
 
 
@@ -375,9 +362,9 @@
 ===================================================== */
 
 .unread-badge {
-  min-width: 18px;
+  min-width: 16px;
 
-  height: 18px;
+  height: 16px;
 
   padding: 0 5px;
 
@@ -389,7 +376,7 @@
 
   justify-content: center;
 
-  background: #00bfff;
+  background: #00bfff; 
 
   color: #ffffff;
 
@@ -417,7 +404,7 @@
 ===================================================== */
 
 .friends.unread-chat span {
-  color: #00bfff;
+  color: #00bfff; 
 
   font-weight: 500;
 }
